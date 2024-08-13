@@ -107,19 +107,22 @@ function initAutocomplete() {
                 button.addEventListener("click", () => {
                     if (currentLocation) {
                         map.setCenter(currentLocation);
+                        map.setZoom(13); // Optional: set zoom level to 13 when moving to current location
                     } else {
                         console.error("Current location is not set.");
                     }
                 });
             }
 
-            // 地図クリック時にマーカーを追加するリスナーを設定
             map.addListener('click', (event) => {
                 const latLng = event.latLng;
-                new google.maps.Marker({
-                    position: latLng,
-                    map: map
-                });
+                const confirmAddMarker = window.confirm("ここにピンを指しますか？");
+                if (confirmAddMarker) {
+                    new google.maps.Marker({
+                        position: latLng,
+                        map: map
+                    });
+                }
             });
         },
         (error) => {
@@ -194,6 +197,7 @@ function initAutocomplete() {
                 button.addEventListener("click", () => {
                     if (currentLocation) {
                         map.setCenter(currentLocation);
+                        map.setZoom(13); // Optional: set zoom level to 13 when moving to current location
                     } else {
                         console.error("Current location is not set.");
                     }
