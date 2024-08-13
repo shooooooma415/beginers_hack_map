@@ -19,3 +19,8 @@
 .button:hover {
     background-color: #45a049; /* ホバー時に背景色を変更 */
 }
+.controls{
+    width: 60px;
+    height: 100px;
+    padding: 10px 20px;
+}
