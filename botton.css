@@ -20,7 +20,33 @@
     background-color: #45a049; /* ホバー時に背景色を変更 */
 }
 .controls{
+    top: 40px;
     width: 60px;
-    height: 100px;
-    padding: 10px 20px;
+    height: 50px;
+    padding: 10px;
 }
+.apple-button {
+    background: url('./apple.png') no-repeat center center;
+    background-size: cover;
+    border: none;
+    width: 100px; /* ボタンの幅 */
+    height: 100px; /* ボタンの高さ */
+    cursor: pointer;
+    outline: none;
+    top: 100px;
+    left: 30px;
+    position: fixed;
+}
+
+#current-location-button {
+    position: absolute;
+    bottom: 40px;
+    right: 20px;
+    z-index: 1;
+    padding: 10px;
+    background-color: #115EC3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
