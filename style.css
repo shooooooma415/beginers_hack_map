@@ -95,3 +95,19 @@ body {
   width: 345px;
 }
 
+#current-location-button {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1;
+  padding: 10px;
+  background-color: #115EC3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#current-location-button:hover {
+  background-color: #0a3d7a;
+}
