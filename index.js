@@ -2,7 +2,6 @@ let map;
 let currentLocation = null;
 
 function setCurrentLocationMarker(map, position) {
-    // 縁の薄い青丸
     new google.maps.Circle({
         strokeColor: '#115EC3',
         strokeOpacity: 0.2,
@@ -14,7 +13,6 @@ function setCurrentLocationMarker(map, position) {
         radius: 100
     });
 
-    // 中央の濃い青丸
     new google.maps.Marker({
         position: position,
         map: map,
@@ -32,42 +30,32 @@ function setCurrentLocationMarker(map, position) {
 function initAutocomplete() {
     navigator.geolocation.getCurrentPosition(
         (position) => {
-            // 現在位置の緯度と経度を取得
             currentLocation = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude,
             };
 
-            // 地図を初期化し、現在位置を中心に設定
-            map = new google.maps.Map(
-                document.getElementById("map"),
-                {
-                    center: currentLocation,
-                    zoom: 13,
-                    mapTypeId: "roadmap",
-                }
-            );
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: currentLocation,
+                zoom: 13,
+                mapTypeId: "roadmap",
+            });
 
-            // 現在位置にカスタムマーカーを追加
             if (currentLocation) {
                 setCurrentLocationMarker(map, currentLocation);
             }
 
-            // Create the search box and link it to the UI element.
             const input = document.getElementById("pac-input");
             const searchBox = new google.maps.places.SearchBox(input);
 
             map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
-            // Bias the SearchBox results towards current map's viewport.
             map.addListener("bounds_changed", () => {
                 searchBox.setBounds(map.getBounds());
             });
 
             let markers = [];
 
-            // Listen for the event fired when the user selects a prediction and retrieve
-            // more details for that place.
             searchBox.addListener("places_changed", () => {
                 const places = searchBox.getPlaces();
 
@@ -75,13 +63,11 @@ function initAutocomplete() {
                     return;
                 }
 
-                // Clear out the old markers.
                 markers.forEach((marker) => {
                     marker.setMap(null);
                 });
                 markers = [];
 
-                // For each place, get the icon, name and location.
                 const bounds = new google.maps.LatLngBounds();
 
                 places.forEach((place) => {
@@ -98,7 +84,6 @@ function initAutocomplete() {
                         scaledSize: new google.maps.Size(25, 25),
                     };
 
-                    // Create a marker for each place.
                     markers.push(
                         new google.maps.Marker({
                             map,
@@ -109,7 +94,6 @@ function initAutocomplete() {
                     );
 
                     if (place.geometry.viewport) {
-                        // Only geocodes have viewport.
                         bounds.union(place.geometry.viewport);
                     } else {
                         bounds.extend(place.geometry.location);
@@ -118,7 +102,6 @@ function initAutocomplete() {
                 map.fitBounds(bounds);
             });
 
-            // 現在地に移動ボタンのイベントリスナーを追加
             const button = document.getElementById("current-location-button");
             if (button) {
                 button.addEventListener("click", () => {
@@ -129,38 +112,37 @@ function initAutocomplete() {
                     }
                 });
             }
+
+            // 地図クリック時にマーカーを追加するリスナーを設定
+            map.addListener('click', (event) => {
+                const latLng = event.latLng;
+                new google.maps.Marker({
+                    position: latLng,
+                    map: map
+                });
+            });
         },
         (error) => {
             console.error("Error retrieving location: ", error);
-            // エラーが発生した場合のデフォルトの位置
             const fallbackLocation = { lat: -33.8688, lng: 151.2195 };
-            map = new google.maps.Map(
-                document.getElementById("map"),
-                {
-                    center: fallbackLocation,
-                    zoom: 13,
-                    mapTypeId: "roadmap",
-                }
-            );
-
-            // 現在位置にカスタムマーカーを追加 (デフォルト位置)
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: fallbackLocation,
+                zoom: 13,
+                mapTypeId: "roadmap",
+            });
             setCurrentLocationMarker(map, fallbackLocation);
 
-            // Create the search box and link it to the UI element.
             const input = document.getElementById("pac-input");
             const searchBox = new google.maps.places.SearchBox(input);
 
             map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
-            // Bias the SearchBox results towards current map's viewport.
             map.addListener("bounds_changed", () => {
                 searchBox.setBounds(map.getBounds());
             });
 
             let markers = [];
 
-            // Listen for the event fired when the user selects a prediction and retrieve
-            // more details for that place.
             searchBox.addListener("places_changed", () => {
                 const places = searchBox.getPlaces();
 
@@ -168,13 +150,11 @@ function initAutocomplete() {
                     return;
                 }
 
-                // Clear out the old markers.
                 markers.forEach((marker) => {
                     marker.setMap(null);
                 });
                 markers = [];
 
-                // For each place, get the icon, name and location.
                 const bounds = new google.maps.LatLngBounds();
 
                 places.forEach((place) => {
@@ -191,7 +171,6 @@ function initAutocomplete() {
                         scaledSize: new google.maps.Size(25, 25),
                     };
 
-                    // Create a marker for each place.
                     markers.push(
                         new google.maps.Marker({
                             map,
@@ -202,7 +181,6 @@ function initAutocomplete() {
                     );
 
                     if (place.geometry.viewport) {
-                        // Only geocodes have viewport.
                         bounds.union(place.geometry.viewport);
                     } else {
                         bounds.extend(place.geometry.location);
@@ -211,7 +189,6 @@ function initAutocomplete() {
                 map.fitBounds(bounds);
             });
 
-            // 現在地に移動ボタンのイベントリスナーを追加
             const button = document.getElementById("current-location-button");
             if (button) {
                 button.addEventListener("click", () => {
