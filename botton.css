@@ -1,0 +1,21 @@
+.button {
+    background-color: #4CAF50; /* 緑色の背景 */
+    border: none; /* 枠線なし */
+    color: white; /* 文字色を白に */
+    padding: 15px 32px; /* 内側の余白 */
+    text-align: center; /* テキストの中央揃え */
+    text-decoration: none; /* テキストの下線をなしに */
+    display: inline-block; /* インラインブロック */
+    font-size: 16px; /* フォントサイズ */
+    margin: 4px 2px; /* 外側の余白 */
+    cursor: pointer; /* カーソルをポインタに */
+    border-radius: 12px; /* 角を丸くする */
+    transition: background-color 0.3s ease; /* 背景色の変化にアニメーションを追加 */
+    position: fixed;
+    bottom: 0;
+    right: 20;
+}
+
+.button:hover {
+    background-color: #45a049; /* ホバー時に背景色を変更 */
+}
