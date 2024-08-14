@@ -95,7 +95,7 @@ body {
   width: 345px;
 }
 
-#current-location-button {
+/* #current-location-button {
   position: absolute;
   top: 10px;
   left: 10px;
@@ -110,4 +110,4 @@ body {
 
 #current-location-button:hover {
   background-color: #0a3d7a;
-}
+} */

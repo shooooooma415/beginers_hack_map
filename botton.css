@@ -19,12 +19,12 @@
 .button:hover {
     background-color: #45a049; /* ホバー時に背景色を変更 */
 }
-.controls{
+/* .controls{
     top: 40px;
     width: 60px;
     height: 50px;
     padding: 10px;
-}
+} */
 .apple-button {
     background: url('./apple.png') no-repeat center center;
     background-size: cover;

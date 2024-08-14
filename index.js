@@ -83,6 +83,7 @@ function initAutocomplete() {
 
             // Listen for the event fired when the user selects a prediction and retrieve
             // more details for that place.
+            //検索結果処理
             searchBox.addListener("places_changed", () => {
                 const places = searchBox.getPlaces();
 
@@ -197,7 +198,7 @@ function initAutocomplete() {
             setCurrentLocationMarker(map, fallbackLocation);
 
             // Create the search box and link it to the UI element.
-            const input = document.getElementById("pac-input");
+            const input = document.getElementById("pac-input");////////
             const searchBox = new google.maps.places.SearchBox(input);
 
             map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);

@@ -10,7 +10,9 @@
 
     <link rel="stylesheet" type="text/css" href="./style.css" />
     <link rel="stylesheet" href="./botton.css" />
+    <link rel="stylesheet" href="./search.css" />
     <script type="module" src="./index.js"></script>
+
   </head>
   <body>
     <div id="map"></div>
@@ -22,6 +24,11 @@
     />
     <a href="#" class="button">Follower posts</button></a>
     <button id="current-location-button">now locate</button>
+    <div id="search-wrap">
+      <form role="search" method="get" action="">
+      <input type="text" value="" name="" id="search-text">
+      </form>
+    </div>
 
     <!-- 
       The `defer` attribute causes the script to execute after the full HTML
